@@ -10,3 +10,15 @@ resource "aws_vpc" "main" {
 provider "aws" {
   region = "us-east-1"
 }
+
+
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.main.id
+}
+
+
+resource "aws_eip" "bar" {
+  domain = "vpc"
+
+  depends_on                = [aws_internet_gateway.gw]
+}
