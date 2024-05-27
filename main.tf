@@ -20,5 +20,9 @@ resource "aws_internet_gateway" "gw" {
 resource "aws_eip" "bar" {
   domain = "vpc"
 
+ tags = {
+   Name = "EIP VPC"
+ }
+
   depends_on                = [aws_internet_gateway.gw]
 }
